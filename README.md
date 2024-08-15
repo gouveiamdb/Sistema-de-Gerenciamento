@@ -26,7 +26,7 @@ O objetivo deste projeto é construir um sistema robusto e eficiente, capaz de l
 ## Autores
 
 - **Giovanni Ornellas**  
-  [GitHub](https://github.com/Giovanni-Ornellas) | [LinkedIn]([https://www.linkedin.com/in/usuario1](https://www.linkedin.com/in/giovanni-ornellas-419610227/))
+  [GitHub](https://github.com/Giovanni-Ornellas) | [LinkedIn](https://www.linkedin.com/in/giovanni-ornellas-419610227/)
 
 - **Matheus Gouveia**  
   [GitHub](https://github.com/gouveiamdb)) | [LinkedIn](https://www.linkedin.com/in/matheus-gouveia-387a19258/)
