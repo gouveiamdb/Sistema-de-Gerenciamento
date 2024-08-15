@@ -29,7 +29,7 @@ O objetivo deste projeto é construir um sistema robusto e eficiente, capaz de l
   [GitHub](https://github.com/Giovanni-Ornellas) | [LinkedIn](https://www.linkedin.com/in/giovanni-ornellas-419610227/)
 
 - **Matheus Gouveia**  
-  [GitHub](https://github.com/gouveiamdb)) | [LinkedIn](https://www.linkedin.com/in/matheus-gouveia-387a19258/)
+  [GitHub](https://github.com/gouveiamdb) | [LinkedIn](https://www.linkedin.com/in/matheus-gouveia-387a19258/)
 
 - **Murilo Silva**  
   [GitHub](https://github.com/usuario3) | [LinkedIn](https://www.linkedin.com/in/murilo-silva-bb2741a1/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)
