@@ -2,18 +2,20 @@ import csv
 
 produtos = {}
 
-# Bloco para criar/manipular o arquivo csv 
-
 def criar_arquivo_csv(nome_arquivo='relatorio_estoque.csv'):
-    with open(nome_arquivo, mode='w', newline='') as arquivo_csv:
-        escritor_csv = csv.writer(arquivo_csv, delimiter=';')
-        escritor_csv.writerow(['ID', 'Nome', 'Categoria', 'Preço', 'Quantidade', 'Descrição'])
-    return {}
+    try:
+        with open(nome_arquivo, mode='x', newline='', encoding='utf8') as arquivo_csv:
+            escritor_csv = csv.writer(arquivo_csv, delimiter=';')
+            escritor_csv.writerow(['ID', 'Nome', 'Categoria', 'Preço', 'Quantidade', 'Descrição'])
+    except FileExistsError:
+        pass
 
 def carregar_produtos(nome_arquivo='relatorio_estoque.csv'):
     produtos = {}
-    with open(nome_arquivo, mode='r', newline='') as arquivo_csv:
+    try:
+        with open(nome_arquivo, mode='r', newline='', encoding='utf8') as arquivo_csv:
             leitor_csv = csv.reader(arquivo_csv, delimiter=';')
+            next(leitor_csv)
             for linha in leitor_csv:
                 if linha:
                     id_produto, nome, categoria, preco, quantidade_estoque, descricao = linha
@@ -22,12 +24,14 @@ def carregar_produtos(nome_arquivo='relatorio_estoque.csv'):
                         'categorias': categoria,
                         'preco': float(preco),
                         'quantidade_estoque': int(quantidade_estoque),
-                        'descricao': descricao    
+                        'descricao': descricao
                     }
+    except FileNotFoundError:
+        criar_arquivo_csv(nome_arquivo)
     return produtos
 
 def salvar_produtos(produtos, nome_arquivo='relatorio_estoque.csv'):
-    with open(nome_arquivo, mode='w', newline='') as arquivo_csv:
+    with open(nome_arquivo, mode='a', newline='', encoding='utf8') as arquivo_csv:
         escritor_csv = csv.writer(arquivo_csv, delimiter=';')
         escritor_csv.writerow(['ID', 'Nome', 'Categoria', 'Preço', 'Quantidade', 'Descrição'])
         for id_produto, dados in produtos.items():
@@ -35,7 +39,7 @@ def salvar_produtos(produtos, nome_arquivo='relatorio_estoque.csv'):
                 id_produto,
                 dados['nome'],
                 dados['categorias'],
-                dados['preco'],
+                f"{dados['preco']:.2f}",
                 dados['quantidade_estoque'],
                 dados['descricao']
             ])
@@ -73,10 +77,10 @@ def menu():
             salvar_produtos(produtos)
 
         elif opcao == '5':
-            print(produtos)#fazer a função vendas
+            print(produtos)  # Implementar função de vendas
 
         elif opcao == '6':
-            gerar_relatorio_csv(produtos)
+            salvar_produtos(produtos)
 
         elif opcao == '7':
             break
@@ -101,12 +105,12 @@ def cadastrar_produto(produtos):
         id_produto = gerar_id(produtos)
         produtos[id_produto] = {
             'nome': input('Digite o nome do produto: '),
-            'categorias': selecionar_categoria(['Informática', 'Roupas', 'Papelaria', 'Livros', 'Brinquedos']),
+            'categorias': selecionar_categoria(['Informática', 'Roupas', 'Papelaria', 'Livros']),
             'preco': float(input('Digite o preço do produto: ')),
             'quantidade_estoque': int(input('Digite a quantidade do produto: ')),
             'descricao': input('Digite uma breve descrição do produto: ')
         }
-        continuar = input("Deseja adicionar outro produto? (s/n): ").strip().lower()
+        continuar = input('Deseja adicionar outro produto? (s/n): ').strip().lower()
         if continuar != 's':
             break
 
@@ -132,7 +136,7 @@ def alterar_produto(produtos):
             nome = input('Digite o novo nome: ')
             produtos[id_produto]['nome'] = nome
         elif sub_opcao == '2':
-            categoria = selecionar_categoria(['Informática', 'Roupas', 'Papelaria', 'Livros', 'Brinquedos'])
+            categoria = selecionar_categoria(['Informática', 'Roupas', 'Papelaria', 'Livros'])
             produtos[id_produto]['categorias'] = categoria
         elif sub_opcao == '3':
             preco = float(input('Digite o novo preço: '))
@@ -145,7 +149,7 @@ def alterar_produto(produtos):
             produtos[id_produto]['descricao'] = descricao
         elif sub_opcao == '6':
             nome = input('Digite o novo nome: ')
-            categoria = selecionar_categoria(['Informática', 'Roupas', 'Papelaria', 'Livros', 'Brinquedos'])
+            categoria = selecionar_categoria(['Informática', 'Roupas', 'Papelaria', 'Livros'])
             preco = float(input('Digite o novo preço: '))
             quantidade_estoque = int(input('Digite a nova quantidade: '))
             descricao = input('Digite a nova descrição: ')
@@ -167,23 +171,8 @@ def imprimir_produtos(produtos):
     for chave, dados_produto in produtos.items():
         print(f'ID: {chave}')
         for campo, valor in dados_produto.items():
-            print(f'  {campo.capitalize()}: {valor}')
+            print(f'{campo.capitalize()}: {valor}')
         print('-' * 30)
-
-def gerar_relatorio_csv(produtos, nome_arquivo='relatorio_estoque.csv'):
-    with open(nome_arquivo, mode='w', newline='') as arquivo_csv:
-        escritor_csv = csv.writer(arquivo_csv, delimiter=';')
-        escritor_csv.writerow(['ID', 'Nome', 'Categoria', 'Preço', 'Quantidade', 'Descrição'])
-        for id_produto, dados in produtos.items():
-            escritor_csv.writerow([
-                id_produto,
-                dados['nome'],
-                dados['categorias'],
-                dados['preco'],
-                dados['quantidade_estoque'],
-                dados['descricao']
-            ])
-    print(f'Relatório gerado e salvo como {nome_arquivo}')
 
 def remover_produto(produtos):
     id_produto = input('Digite o ID do produto que deseja remover: ')
@@ -193,6 +182,7 @@ def remover_produto(produtos):
     else:
         print('Produto não encontrado.')
 
-produtos = criar_arquivo_csv()
+criar_arquivo_csv()
+produtos = carregar_produtos()
 
 menu()
