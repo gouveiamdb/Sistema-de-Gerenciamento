@@ -2,23 +2,20 @@ import csv
 
 produtos = {}
 
-# Bloco para criar/manipular o arquivo csv 
-
 def criar_arquivo_csv(nome_arquivo='relatorio_estoque.csv'):
-    # Cria o arquivo CSV com o cabeçalho
     try:
         with open(nome_arquivo, mode='x', newline='', encoding='utf8') as arquivo_csv:
             escritor_csv = csv.writer(arquivo_csv, delimiter=';')
             escritor_csv.writerow(['ID', 'Nome', 'Categoria', 'Preço', 'Quantidade', 'Descrição'])
     except FileExistsError:
-        pass  # nao faz nada pq o arquivo já existe
+        pass
 
 def carregar_produtos(nome_arquivo='relatorio_estoque.csv'):
     produtos = {}
     try:
-        with open(nome_arquivo, mode='r', newline='') as arquivo_csv:
-            leitor_csv = csv.reader(arquivo_csv, delimiter=';', encoding='utf8')
-            next(leitor_csv)  #isso pula a primeira linha
+        with open(nome_arquivo, mode='r', newline='', encoding='utf8') as arquivo_csv:
+            leitor_csv = csv.reader(arquivo_csv, delimiter=';')
+            next(leitor_csv)
             for linha in leitor_csv:
                 if linha:
                     id_produto, nome, categoria, preco, quantidade_estoque, descricao = linha
@@ -34,7 +31,7 @@ def carregar_produtos(nome_arquivo='relatorio_estoque.csv'):
     return produtos
 
 def salvar_produtos(produtos, nome_arquivo='relatorio_estoque.csv'):
-    with open(nome_arquivo, mode='w', newline='', encoding='utf8') as arquivo_csv:
+    with open(nome_arquivo, mode='a', newline='', encoding='utf8') as arquivo_csv:
         escritor_csv = csv.writer(arquivo_csv, delimiter=';')
         escritor_csv.writerow(['ID', 'Nome', 'Categoria', 'Preço', 'Quantidade', 'Descrição'])
         for id_produto, dados in produtos.items():
@@ -42,12 +39,11 @@ def salvar_produtos(produtos, nome_arquivo='relatorio_estoque.csv'):
                 id_produto,
                 dados['nome'],
                 dados['categorias'],
-                f"{dados['preco']:.2f}",  # Formatação para duas casas decimais
+                f"{dados['preco']:.2f}",
                 dados['quantidade_estoque'],
                 dados['descricao']
             ])
 
-# Bloco para criar e manipular o estoque
 def menu():
     menu = '''
     ---------------------------
@@ -81,7 +77,7 @@ def menu():
             salvar_produtos(produtos)
 
         elif opcao == '5':
-            print(produtos)#fazer a função vendas
+            print(produtos)  # Implementar função de vendas
 
         elif opcao == '6':
             salvar_produtos(produtos)
@@ -186,6 +182,7 @@ def remover_produto(produtos):
     else:
         print('Produto não encontrado.')
 
-produtos = criar_arquivo_csv()
+criar_arquivo_csv()
+produtos = carregar_produtos()
 
 menu()
