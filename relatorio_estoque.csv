@@ -1,0 +1,27 @@
+ID;Nome;Categoria;Preço;Quantidade;Descrição
+0001;camisa;Roupas;129.90;20;camisa polo
+0002;lápis;Papelaria;1.50;100;lápis preto
+0003;notebook;Informática;4500.00;6;notebook dell
+0004;Mercado Financeiro;Livros;200.00;3;Alexandre ASSAF NETO
+ID;Nome;Categoria;Preço;Quantidade;Descrição
+0001;camisa;Roupas;129.90;20;camisa polo
+0002;lápis;Papelaria;1.50;100;lápis preto
+0003;notebook;Informática;4500.00;6;notebook dell
+0004;Mercado Financeiro;Livros;200.00;3;Alexandre ASSAF NETO
+0005;bermuda;Roupas;129.90;5;bermuda jeans
+ID;Nome;Categoria;Preço;Quantidade;Descrição
+0001;camisa;Roupas;129.90;20;camisa polo
+0002;lápis;Papelaria;1.50;100;lápis preto
+0003;notebook;Informática;4500.00;6;notebook dell
+0004;Livro Mercado Financeiro;Livros;200.00;3;Alexandre ASSAF NETO
+0005;bermuda;Roupas;129.90;5;bermuda jeans
+ID;Nome;Categoria;Preço;Quantidade;Descrição
+0001;camisa;Roupas;129.90;20;camisa polo
+0002;lápis;Papelaria;1.50;100;lápis preto
+0003;notebook;Informática;4500.00;6;notebook dell
+0005;bermuda;Roupas;129.90;5;bermuda jeans
+ID;Nome;Categoria;Preço;Quantidade;Descrição
+0001;camisa;Roupas;129.90;20;camisa polo
+0002;lápis;Papelaria;1.50;100;lápis preto
+0003;notebook;Informática;4500.00;6;notebook dell
+0005;Mercado Financeiro;Livros;200.00;6;Alexandre ASSAF NETO
