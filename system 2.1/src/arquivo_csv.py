@@ -9,7 +9,7 @@ def gerar_relatorio_vendas(detalhes_venda):
     except FileNotFoundError:
         conteudo_existente = ''
     
-    with open('vendas.csv', mode='w', newline='', encoding='utf8') as file:
+    with open('vendas.csv', mode='a', newline='', encoding='utf8') as file: # Adicionar nova venda ao arquivo
         if not conteudo_existente:
             file.write('Nome,Quantidade Vendida,Preço Unitário,Valor Total\n')
         
@@ -64,7 +64,7 @@ def salvar_produtos(produtos):
     except FileNotFoundError:
         conteudo_existente = ''
 
-    with open('produtos.csv', mode='w', newline='', encoding='utf8') as file:
+    with open('produtos.csv', mode='w+', newline='', encoding='utf8') as file:
         fieldnames = ['ID', 'Nome', 'Categoria', 'Preço', 'Quantidade', 'Descrição']
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         
