@@ -2,10 +2,9 @@ from src.arquivo_csv import salvar_produtos
 
 #funcoes relacionadas a manipulacao de produtos.
 def gerar_id(produtos):
-    #Gera um ID único para o produto baseado no número total de produtos.
-    if produtos:
-        return str(max(int(id_produto) for id_produto in produtos.keys()) + 1)
-    return '1'
+    ultimo_id = len(produtos)
+    novo_id = ultimo_id + 1
+    return f'{novo_id:04d}'
 
 def selecionar_categoria(categorias):
     print("Selecione uma categoria de produto:")
@@ -70,9 +69,9 @@ def cadastrar_produto(produtos):
         confirmar = input("Adicionar novo produto? (s/n): ").strip().lower()
         if confirmar != 's':
             break 
-        
+
     salvar_produtos(produtos)
-    print('Produto cadastrado com sucesso.')   
+    print('Produto cadastrado com sucesso.')
 
 def alterar_produto(produtos):
     imprimir_produtos(produtos)
