@@ -24,7 +24,7 @@ def adicionar_ao_carrinho(produtos, carrinho):
         else:
             print('Produto não encontrado.')
 
-        confirmar = input("Confirma essa operação? (s/n): ").strip().lower()
+        confirmar = input("Deseja adicionar mais produtos ao carrinho? (s/n): ").strip().lower()
         if confirmar != 's':
             break
     return carrinho
