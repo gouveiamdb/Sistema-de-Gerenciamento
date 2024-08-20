@@ -67,10 +67,12 @@ def cadastrar_produto(produtos):
             'descricao': descricao_produto
         }
         
-        salvar_produtos(produtos)
         confirmar = input("Adicionar novo produto? (s/n): ").strip().lower()
         if confirmar != 's':
             break 
+        
+    salvar_produtos(produtos)
+    print('Produto cadastrado com sucesso.')   
 
 def alterar_produto(produtos):
     imprimir_produtos(produtos)

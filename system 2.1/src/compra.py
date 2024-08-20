@@ -35,7 +35,7 @@ def excluir_do_carrinho(carrinho):
         print("O carrinho está vazio.")
         return carrinho
     id_produto = input('Digite o ID do produto que deseja remover do carrinho: ')
-    carrinho = [item for item in carrinho if item['id'] != id_produto]
+    carrinho = list(filter(lambda item: item['id'] != id_produto, carrinho))
     print('Produto removido do carrinho.')
     return carrinho
 
